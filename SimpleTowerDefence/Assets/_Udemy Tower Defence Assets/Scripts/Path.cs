@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Path : MonoBehaviour
 {
-    [SerializeField] Transform[] points;
+    public Transform[] points;
 }
