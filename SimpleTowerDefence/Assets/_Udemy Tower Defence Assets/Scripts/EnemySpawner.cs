@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
         if (spawnCounter <= 0)
         {
             spawnCounter = timeBetweenSpawns;
-            if(amountOfSpawns>0)
+            if(amountOfSpawns>0 && castle.surrendered==false)
             {
                 Instantiate(enemyToSpawn, spawnPoint.position, spawnPoint.rotation).Setup(castle,path);
                 amountOfSpawns--;

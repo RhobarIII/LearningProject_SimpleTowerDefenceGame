@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class CastleController : MonoBehaviour
 {
     [SerializeField] float castleHealth = 100f;
+    [SerializeField] public Transform[] attackPoints;
 
     public Slider healthSilder;
     public Text healthValue;
-    
 
+    public bool surrendered = false;
     private float currentCastelHealth;
    
     void Start()
@@ -36,6 +37,7 @@ public class CastleController : MonoBehaviour
         healthValue.text = currentCastelHealth.ToString() + " / " + castleHealth.ToString();
         if (currentCastelHealth<=0)
         {
+            surrendered = true;
             gameObject.SetActive(false);
         }
         

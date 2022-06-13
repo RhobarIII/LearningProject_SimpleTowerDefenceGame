@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     private CastleController castle;
 
     private int currentPoint;
+    private int sellectedAttackPoint;
     private bool reachEnd = false;
     private float counter;
     
@@ -25,26 +26,23 @@ public class EnemyController : MonoBehaviour
         if (castle == null)
         {
             castle = FindObjectOfType<CastleController>();
-        }
-        
+        } 
         counter = timeBetweenDmg;
     }
     void Update()
     {
-        if(reachEnd==false)
+        if(castle.surrendered==false)
         {
-            
-            Walk();
-        }
-        else
-        {
-            counter -= Time.deltaTime;
-            if(counter<=0)
+            if (reachEnd == false)
             {
-                castle.TakeDamage(damage);
-                gameObject.SetActive(false);
+                Walk();
+            }
+            else
+            {
+                TakingDamage();
             }
         }
+      
     
     }
   
@@ -56,11 +54,23 @@ public class EnemyController : MonoBehaviour
         {
             currentPoint++;
             if (path.points.Length <= currentPoint)
-            {
+            {  
+                sellectedAttackPoint = Random.Range(0, castle.attackPoints.Length);
+              
                 reachEnd = true;
             }
         }
-
+    }
+    void TakingDamage()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, castle.attackPoints[sellectedAttackPoint].position, moveSpeed * Time.deltaTime);
+        transform.LookAt(castle.attackPoints[sellectedAttackPoint]);
+        counter -= Time.deltaTime;
+        if (counter <= 0)
+        {
+            castle.TakeDamage(damage);
+            gameObject.SetActive(false);
+        }
     }
     public void Setup(CastleController newCastle, Path newPath)
     {
