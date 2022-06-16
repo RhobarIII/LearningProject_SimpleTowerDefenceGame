@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] float range=3f;
+    public float range=3f;
     [SerializeField] LayerMask enemy;
     [SerializeField] Collider[] collidersInRange;
-    [SerializeField] List<EnemyController> enemysInRange=new List<EnemyController>();
+    public List<EnemyController> enemysInRange=new List<EnemyController>();
 
     private float checkCounter;
     [SerializeField] float timeCounter = 0.5f;

@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] Rigidbody rigidBody;
     [SerializeField] float moveSpeed;
+   
 
     void Start()
     {
@@ -20,8 +21,5 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Update()
-    {
-        
-    }
+   
 }
