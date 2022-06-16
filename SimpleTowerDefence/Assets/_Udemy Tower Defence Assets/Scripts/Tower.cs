@@ -4,20 +4,35 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] float range;
+    [SerializeField] float range=3f;
     [SerializeField] LayerMask enemy;
-    public Collider[] collidersInRange;
+    [SerializeField] Collider[] collidersInRange;
+    [SerializeField] List<EnemyController> enemysInRange=new List<EnemyController>();
 
+    private float checkCounter;
+    [SerializeField] float timeCounter = 0.5f;
    
 
     void Start()
     {
-       
+        checkCounter = timeCounter;  
     }
 
     void Update()
     {
-        collidersInRange= Physics.OverlapSphere(transform.position, range,enemy);
-        
+        checkCounter -= Time.deltaTime;
+        if(checkCounter==0)
+        {
+            collidersInRange = Physics.OverlapSphere(transform.position, range, enemy);
+            enemysInRange.Clear();
+
+            foreach (Collider col in collidersInRange)
+            {
+                enemysInRange.Add(col.GetComponent<EnemyController>());
+            }
+            checkCounter = timeCounter;
+        }
+
+     
     }
 }
