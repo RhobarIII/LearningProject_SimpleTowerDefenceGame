@@ -78,7 +78,8 @@ GameObject:
   - component: {fileID: 3820715155204189526}
   - component: {fileID: 3820715155204189521}
   - component: {fileID: 4714993677718678981}
-  m_Layer: 0
+  - component: {fileID: 6077166378800103446}
+  m_Layer: 6
   m_Name: Enemy (Cyclop)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +94,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989189938286882023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1523285, y: 0.325, z: -4.2}
+  m_LocalPosition: {x: 1.1523285, y: 0.539, z: -4.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -151,6 +152,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &6077166378800103446
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989189938286882023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.22369358
+  m_Height: 0.4897446
+  m_Direction: 1
+  m_Center: {x: 0.000000029802322, y: 0.21671382, z: 0.013491809}
 --- !u!1 &2424627900784305609
 GameObject:
   m_ObjectHideFlags: 0
