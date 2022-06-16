@@ -21,7 +21,7 @@ public class Tower : MonoBehaviour
     void Update()
     {
         checkCounter -= Time.deltaTime;
-        if(checkCounter==0)
+        if(checkCounter<=0)
         {
             collidersInRange = Physics.OverlapSphere(transform.position, range, enemy);
             enemysInRange.Clear();
