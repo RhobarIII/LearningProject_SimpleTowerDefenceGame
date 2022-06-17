@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float timeBetweenDmg;
     [SerializeField] float damage;
+   
 
     private Path path;
     private CastleController castle;
@@ -16,6 +17,8 @@ public class EnemyController : MonoBehaviour
     private bool reachEnd = false;
     private float counter;
     
+  
+
 
     void Start()
     {
@@ -28,6 +31,7 @@ public class EnemyController : MonoBehaviour
             castle = FindObjectOfType<CastleController>();
         } 
         counter = timeBetweenDmg;
+       
     }
     void Update()
     {
@@ -49,7 +53,9 @@ public class EnemyController : MonoBehaviour
     void Walk()
     {
         transform.position = Vector3.MoveTowards(transform.position, path.points[currentPoint].position, moveSpeed * Time.deltaTime);
-        transform.LookAt(path.points[currentPoint]);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(path.points[currentPoint].position - transform.position), 5f * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+        //transform.LookAt(path.points[currentPoint]);
         if (Vector3.Distance(transform.position, path.points[currentPoint].position) < 0.1f)
         {
             currentPoint++;
@@ -77,4 +83,5 @@ public class EnemyController : MonoBehaviour
         castle = newCastle;
         path = newPath;
     }
+ 
 }

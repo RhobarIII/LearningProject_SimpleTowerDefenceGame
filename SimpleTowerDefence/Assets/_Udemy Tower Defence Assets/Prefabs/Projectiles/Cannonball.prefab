@@ -77,8 +77,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 2581420382753915648}
-  moveSpeed: 8
+  moveSpeed: 15
   impactEffect: {fileID: 5066715497564894772, guid: ca31cee6bb6c71f44ab4cb4ba48d0bdd, type: 3}
+  damage: 6
 --- !u!1 &2581420382876019262
 GameObject:
   m_ObjectHideFlags: 0
