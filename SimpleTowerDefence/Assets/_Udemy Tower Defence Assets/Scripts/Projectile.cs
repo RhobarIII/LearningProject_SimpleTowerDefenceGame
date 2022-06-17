@@ -8,12 +8,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] GameObject impactEffect;
     [SerializeField] float damage;
-  
-   
 
-    
-    
-
+    private bool hasDamaged;
     void Start()
     {
         rigidBody.velocity = transform.forward * moveSpeed;
@@ -21,11 +17,13 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Instantiate(impactEffect, transform.position, transform.rotation);
-        if(other.tag=="Enemy")
+        if(other.tag=="Enemy" && hasDamaged==false)
         {
             other.GetComponent<EnemyHealthController>().TakeDamage(damage);
+            hasDamaged = true;
         }
         Destroy(gameObject);
+
       
     }
     private void OnBecameInvisible()
