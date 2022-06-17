@@ -9,12 +9,15 @@ public class ProjectileTower : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] float timeBetweenShoots;
     [SerializeField] Transform weaponType;
+
     private float shotCounter;
     private Transform target;
+  
     void Start()
     {
         theTower = GetComponent<Tower>();
         shotCounter = timeBetweenShoots;
+       
     }
 
     // Update is called once per frame
@@ -24,7 +27,7 @@ public class ProjectileTower : MonoBehaviour
         {
            // weaponType.LookAt(target);
             weaponType.rotation =Quaternion.Slerp(weaponType.rotation, Quaternion.LookRotation(target.position-transform.position),5f *Time.deltaTime);
-            weaponType.rotation = Quaternion.Euler(0f, weaponType.rotation.y, 0f);
+            weaponType.rotation = Quaternion.Euler(0f, weaponType.rotation.eulerAngles.y, 0f);
         }
 
         shotCounter -= Time.deltaTime;
@@ -34,26 +37,31 @@ public class ProjectileTower : MonoBehaviour
             firePoint.LookAt(target);
             Instantiate(projectile, firePoint.position, firePoint.rotation);
         }
-        if (theTower.enemysInRange.Count > 0)
+        if(theTower.enemyUpdated)
         {
-            float minDistance = theTower.range + 1f;
-            foreach (EnemyController enemy in theTower.enemysInRange)
+            if (theTower.enemysInRange.Count > 0)
             {
-                if (enemy != null)
+                float minDistance = theTower.range + 1f;
+                foreach (EnemyController enemy in theTower.enemysInRange)
                 {
-                    float distance = Vector3.Distance(transform.position, enemy.transform.position);
-                    if(distance<minDistance)
+                    if (enemy != null)
                     {
-                        minDistance = distance;
-                        target = enemy.transform;
+                        float distance = Vector3.Distance(transform.position, enemy.transform.position);
+                        if (distance < minDistance)
+                        {
+                            minDistance = distance;
+                            target = enemy.transform;
+                        }
+
                     }
-                  
-                }
-                else
-                {
-                    target = null;
+                    else
+                    {
+                        target = null;
+                    }
                 }
             }
         }
+        
+    
     }
 }

@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour
     [SerializeField] Collider[] collidersInRange;
     public List<EnemyController> enemysInRange=new List<EnemyController>();
 
+    [HideInInspector] public bool enemyUpdated;
+
     private float checkCounter;
     [SerializeField] float timeCounter = 0.5f;
    
@@ -20,6 +22,7 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
+        enemyUpdated = false;
         checkCounter -= Time.deltaTime;
         if(checkCounter<=0)
         {
@@ -31,6 +34,7 @@ public class Tower : MonoBehaviour
                 enemysInRange.Add(col.GetComponent<EnemyController>());
             }
             checkCounter = timeCounter;
+            enemyUpdated = true;
         }
 
      

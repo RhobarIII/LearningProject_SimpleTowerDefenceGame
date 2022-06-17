@@ -47,12 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b794caf7621aaa642a0b7e5266df5172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 50
+  range: 3
   enemy:
     serializedVersion: 2
     m_Bits: 64
   collidersInRange: []
   enemysInRange: []
+  enemyUpdated: 0
   timeCounter: 0.5
 --- !u!114 &8025200120619473140
 MonoBehaviour:
