@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] Rigidbody rigidBody;
     [SerializeField] float moveSpeed;
-   
+    [SerializeField] GameObject impactEffect;
 
     void Start()
     {
@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
     private void OnBecameInvisible()

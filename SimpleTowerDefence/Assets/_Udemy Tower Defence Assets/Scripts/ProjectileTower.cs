@@ -9,6 +9,7 @@ public class ProjectileTower : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] float timeBetweenShoots;
     [SerializeField] Transform weaponType;
+    [SerializeField] GameObject shotEffect;
 
     private float shotCounter;
     private Transform target;
@@ -36,8 +37,9 @@ public class ProjectileTower : MonoBehaviour
             shotCounter = timeBetweenShoots;
             firePoint.LookAt(target);
             Instantiate(projectile, firePoint.position, firePoint.rotation);
+            Instantiate(shotEffect, firePoint.position, firePoint.rotation);
         }
-        if(theTower.enemyUpdated)
+        if(theTower.enemyUpdated==true)
         {
             if (theTower.enemysInRange.Count > 0)
             {
@@ -54,11 +56,12 @@ public class ProjectileTower : MonoBehaviour
                         }
 
                     }
-                    else
-                    {
-                        target = null;
-                    }
+                   
                 }
+            }
+            else
+            {
+                target = null;
             }
         }
         
